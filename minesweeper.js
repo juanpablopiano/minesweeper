@@ -1,5 +1,5 @@
-let rows = 12;
-let colums = 12;
+let rows = 10;
+let colums = 10;
 let grid = rows * colums; // el numero total de celdas
 let cells = []; // el array que va a contener todas las celdas
 let mines = Math.floor(grid * 0.1); // numero de minas que usara el juego
@@ -15,6 +15,10 @@ let board = document.querySelector("#board");
 let replay = document.querySelector("#replay");
 let gameDisplay = document.querySelector("#game");
 
+board.addEventListener('contextmenu', e => {
+    e.preventDefault();
+});
+
 replay.addEventListener('click', () => {
     cells = [];
     board.innerHTML = "";
@@ -25,14 +29,14 @@ replay.addEventListener('click', () => {
     nFlags = mines;
     cells = createCells(rows, colums);
     clearInterval(cancelTimer);
-    secDisplay.textContent = 0;
     gameDisplay.textContent = "Game: not started";
     seconds = 0;
+    secDisplay.innerText = String(seconds).padStart(3, "0");
 });
 
 function incrementSeconds() {
-    seconds += 1;
-    secDisplay.innerText = seconds;
+    seconds++;
+    secDisplay.innerText = String(seconds).padStart(3, "0");
 }
 
 class Mine { // esta es la clase mina, aqui deberia poner los metodos, tambien falta crear la clase contenedor
@@ -178,7 +182,7 @@ function clickEvent(_c, _i, _j) {
             cancelTimer = setInterval(incrementSeconds, 1000);
             
             game = "started" // inicializa el juego supuestamente
-            gameDisplay.textContent = "Game: " + game;
+            gameDisplay.textContent = "Game: " + game.padEnd(11, " ");
         }
         
         if (_c.flagged) {}
@@ -223,6 +227,7 @@ function lose(c) {
     if (flagged && !mined) {
         element.textContent = "X";
         element.style.color = "red";
+        element.style.backgroundColor = "#2c2c2c";
     } else if (!flagged) {
         element.style.backgroundColor = "rgb(170, 20, 25)";
         game = "lost";
@@ -233,7 +238,7 @@ function lose(c) {
 			c.el.style.backgroundColor = "rgb(170, 20, 25)";
 		}
     });
-    gameDisplay.textContent = "Game: " + game;
+    gameDisplay.textContent = "Game: " + game.padEnd(11, " ");
     clearInterval(cancelTimer);
 }
  
@@ -276,7 +281,7 @@ function click(c) {
     }
 
     if (game === "won") {
-        gameDisplay.textContent = "Game: " + game;
+        gameDisplay.textContent = "Game: " + game.padEnd(11, " ");
         clearInterval(cancelTimer);
     }
 }
@@ -368,11 +373,12 @@ function openCell(_cell) {
 		game = "won";
 	}
 
-    _cell.el.style.backgroundColor = "#232323";
+    _cell.el.style.backgroundColor = "#2c2c2c";
     _cell.clicked = true;
 
     if (_cell.number > 0) {
         _cell.el.textContent = _cell.number;
+        _cell.el.className = _cell.el.className + ` number${_cell.number}`;
     }
 }
 
