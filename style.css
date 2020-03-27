@@ -1,0 +1,74 @@
+/*
+    Colors for the mine sweeper
+    1: 0000FF
+    2: 0B7713
+    3: FC0707
+    4: 0F104C
+    5: 491702
+    6: EE145B
+    7: FFF200
+    8: 555555
+
+    cell: 
+        gray1: E2E2E2
+        gray2: CCCCCC
+        gray3: B7B7B7
+        gray4: 707070
+*/
+
+body {
+    margin: 0;
+    background-color: #232323;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: white;
+    font-family: 'Baloo 2', cursive;
+}
+
+#flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#board {
+    margin: 10px 0 0 10px;
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-gap: 4px;
+    grid-auto-rows: 40px;
+}
+
+.item {
+    background-color: rgb(20, 20, 163);
+    text-align: center;
+    color: white;
+    line-height: 40px;
+    user-select: none;
+}
+
+.item:hover {
+    background-color: rgb(62, 75, 197);
+    transition: all 0.5s;
+}
+
+#square {
+    background-color: indigo;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+#a {
+    color: black;
+    font-weight: 800;
+}
+#b {
+    color: red;
+    font-weight: 800;
+}
