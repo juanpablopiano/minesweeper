@@ -22,7 +22,7 @@ body {
     font-family: sans-serif;
     font-weight: 600;
     color: white;
-    font-family: 'Baloo 2', cursive;
+    font-family: 'Bellota Text', cursive;
 }
 
 #info-header {
@@ -79,34 +79,42 @@ body {
 
 #a {
     color: black;
-    font-weight: 800;
+    font-weight: 700;
 }
 #b {
     color: red;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .number1 {
     color: #0000FF;
+    font-weight: 700;
 }
 .number2 {
     color: #0B7713;
+    font-weight: 700;
 }
 .number3 {
     color: #FC0707;
+    font-weight: 700;
 }
 .number4 {
     color: #0F104C;
+    font-weight: 700;
 }
 .number5 {
     color: #491702;
+    font-weight: 700;
 }
 .number6 {
     color: #EE145B;
+    font-weight: 700;
 }
 .number7 {
     color: #FFF200;
+    font-weight: 700;
 }
 .number8 {
     color: #555555;
+    font-weight: 700;
 }

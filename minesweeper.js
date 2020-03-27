@@ -230,11 +230,13 @@ function lose(c) {
         element.style.backgroundColor = "#2c2c2c";
     } else if (!flagged) {
         element.style.backgroundColor = "rgb(170, 20, 25)";
+        element.textContent = "X";
+        element.style.color = "black";
         game = "lost";
 	}
 	
-	goOverCells((c) => {
-		if (c.mined) {
+	goOverCells(rows, colums, (c) => {
+		if (c.number === -1) {
 			c.el.style.backgroundColor = "rgb(170, 20, 25)";
 		}
     });
@@ -283,6 +285,12 @@ function click(c) {
     if (game === "won") {
         gameDisplay.textContent = "Game: " + game.padEnd(11, " ");
         clearInterval(cancelTimer);
+
+        goOverCells(rows, colums, (c) => {
+            if (c.mined) {
+                c.el.innerHTML = '<span id="a">|</span><span id="b">></span>';
+            }
+        });
     }
 }
 
