@@ -236,7 +236,7 @@ function lose(c) {
 	}
 	
 	goOverCells(rows, colums, (c) => {
-		if (c.number === -1) {
+		if (c.number === -1 && !c.flagged) {
 			c.el.style.backgroundColor = "rgb(170, 20, 25)";
 		}
     });
