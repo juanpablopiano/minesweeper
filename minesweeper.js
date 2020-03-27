@@ -7,9 +7,13 @@ let firstClick = false; // chequea si ya se hizo el primer click
 let game = "not started"; //chequea el estado del juego
 let goodCells = grid - mines; // es la cantidad de minas sin celda. Cuando llegue a 0 se gana el juego
 let nFlags = mines; // numero maximo de banderitas que se pueden poner, que es igual al numero de minas
+let seconds = 0;
+let cancelTimer = 0;
 
+let secDisplay = document.querySelector("#time");
 let board = document.querySelector("#board");
 let replay = document.querySelector("#replay");
+let gameDisplay = document.querySelector("#game");
 
 replay.addEventListener('click', () => {
     cells = [];
@@ -20,7 +24,16 @@ replay.addEventListener('click', () => {
     goodCells = grid - mines;
     nFlags = mines;
     cells = createCells(rows, colums);
+    clearInterval(cancelTimer);
+    secDisplay.textContent = 0;
+    gameDisplay.textContent = "Game: not started";
+    seconds = 0;
 });
+
+function incrementSeconds() {
+    seconds += 1;
+    secDisplay.innerText = seconds;
+}
 
 class Mine { // esta es la clase mina, aqui deberia poner los metodos, tambien falta crear la clase contenedor
     constructor(ypos, xpos, el) {
@@ -162,9 +175,10 @@ function clickEvent(_c, _i, _j) {
             _c.firstClicked = true;
             cells = setMines(mines, cells); // esta funcion le pone las minas a los elementos
             numbers();
-
+            cancelTimer = setInterval(incrementSeconds, 1000);
             
             game = "started" // inicializa el juego supuestamente
+            gameDisplay.textContent = "Game: " + game;
         }
         
         if (_c.flagged) {}
@@ -218,7 +232,9 @@ function lose(c) {
 		if (c.mined) {
 			c.el.style.backgroundColor = "rgb(170, 20, 25)";
 		}
-	});
+    });
+    gameDisplay.textContent = "Game: " + game;
+    clearInterval(cancelTimer);
 }
  
 //Funcion que ejecuta el click
@@ -257,6 +273,11 @@ function click(c) {
 				lost2(c);
 			}
         }
+    }
+
+    if (game === "won") {
+        gameDisplay.textContent = "Game: " + game;
+        clearInterval(cancelTimer);
     }
 }
 

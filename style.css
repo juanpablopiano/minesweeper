@@ -25,7 +25,16 @@ body {
     font-family: 'Baloo 2', cursive;
 }
 
+#info {
+    display: inline-block;
+}
+
+.info {
+    margin: 0 30px;
+}
+
 #flex-container {
+    
     display: flex;
     justify-content: center;
 }
